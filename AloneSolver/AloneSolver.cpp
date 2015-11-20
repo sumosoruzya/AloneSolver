@@ -1,15 +1,24 @@
 #include "AloneSolver.hpp"
 
-vector<vector<a_data>> AloneSolver::solve() {
+vector<vector<int>> AloneSolver::solve() {
 	//初期適用解法
 	vector<vector<a_data>> answer = grow_three_line(problem);
 	answer = grow_two_one_line(answer);
 	answer = negation_between_same_number(answer);
 
-	// ここに来てようやく単純発生が使える
+	// 単純否定と単純発生のコンボ
+	answer = simple_negation(answer);
 	answer = simple_grow(answer);
 
-	return answer;
+	vector<vector<int>> solution;
+	for (auto vec : answer) {
+		vector<int> col;
+		for (auto a : vec) {
+			col.push_back(a.to_i());
+		}
+		solution.push_back(col);
+	}
+	return solution;
 }
 
 vector<vector<a_data>> AloneSolver::grow_three_line(vector<vector<a_data>> prob) {
@@ -118,10 +127,19 @@ vector<vector<a_data>> AloneSolver::simple_grow(vector<vector<a_data>> prob) {
 	for (int i = 0; i < matrix_size; i++) {
 		for (int j = 0; j < matrix_size; j++) {
 			if (prob[i][j].flag == -1) {
-				for (auto vec : prob[i]) {
-					if (vec.flag == 0 && vec.num == prob[i][j].num) {
-						vec.num = 0;
-						vec.flag = 1;
+				for (int k = 0; k < matrix_size; k++) {
+					if (k != j) {
+						if (prob[i][k].flag == 0 && prob[i][k].num == prob[i][j].num) {
+							prob[i][k].num = 0;
+							prob[i][k].flag = 1;
+						}
+					}
+
+					if (k != i) {
+						if (prob[k][j].flag == 0 && prob[k][j].num == prob[i][j].num) {
+							prob[k][j].num = 0;
+							prob[k][j].flag = 1;
+						}
 					}
 				}
 			}

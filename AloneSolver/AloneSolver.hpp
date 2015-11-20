@@ -4,10 +4,24 @@
 
 using namespace std;
 
-typedef struct a_data
+typedef struct alone_data
 {
 	int num;
 	int flag;
+
+	alone_data(int n) {
+		num = n;
+		flag = 0;
+	}
+	alone_data(int n, int f) {
+		num = n;
+		flag = f;
+	}
+
+	int to_i() {
+		if (flag == 1)return 0;
+		else return num;
+	}
 }a_data;
 
 class AloneSolver
@@ -18,7 +32,18 @@ public:
 		matrix_size = prob.size;
 	}
 
-	vector<vector<a_data>> solve();
+	AloneSolver(vector<vector<int>> prob) {
+		for(auto vec: prob) {
+			vector<a_data> col;
+			for (auto num : vec) {
+				col.push_back(a_data(num));
+			}
+			problem.push_back(col);
+		}
+		matrix_size = prob.size;
+	}
+
+	vector<vector<int>> solve();
 
 private:
 	int matrix_size;
