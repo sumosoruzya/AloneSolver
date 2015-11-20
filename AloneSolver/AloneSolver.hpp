@@ -43,6 +43,17 @@ public:
 		matrix_size = prob.size;
 	}
 
+	AloneSolver(int n, const int& prob) {
+		for (int i = 0; i < n; i++) {
+			vector<a_data> col;
+			for (int j = 0; j < n; j++) {
+				col.push_back(a_data((&prob)[n * i + j]));
+			}
+			problem.push_back(col);
+		}
+		matrix_size = n;
+	}
+
 	vector<vector<int>> solve();
 
 private:

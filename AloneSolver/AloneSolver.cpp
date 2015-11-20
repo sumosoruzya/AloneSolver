@@ -2,7 +2,7 @@
 
 vector<vector<int>> AloneSolver::solve() {
 	//‰Šú“K—p‰ğ–@
-	vector<vector<a_data>> answer = grow_three_line(problem);
+	auto answer = grow_three_line(problem);
 	answer = grow_two_one_line(answer);
 	answer = negation_between_same_number(answer);
 
