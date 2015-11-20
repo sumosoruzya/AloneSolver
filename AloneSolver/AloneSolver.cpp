@@ -116,11 +116,13 @@ vector<vector<a_data>> AloneSolver::simple_negation(vector<vector<a_data>> prob)
 vector<vector<a_data>> AloneSolver::simple_grow(vector<vector<a_data>> prob) {
 	// 自身が白マス確定なら、同じ数字のマスは全て黒マス
 	for (int i = 0; i < matrix_size; i++) {
-		if (prob[i][j].flag == -1) {
-			for (auto vec : prob[i]) {
-				if (vec.flag == 0 && vec.num == prob[i][j].num) {
-					vec.num = 0;
-					vec.flag = 1;
+		for (int j = 0; j < matrix_size; j++) {
+			if (prob[i][j].flag == -1) {
+				for (auto vec : prob[i]) {
+					if (vec.flag == 0 && vec.num == prob[i][j].num) {
+						vec.num = 0;
+						vec.flag = 1;
+					}
 				}
 			}
 		}
