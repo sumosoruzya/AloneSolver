@@ -63,6 +63,7 @@ private:
 	vector<vector<a_data>> grow_three_line(vector<vector<a_data>> prob);
 	vector<vector<a_data>> grow_two_one_line(vector<vector<a_data>> prob);
 	vector<vector<a_data>> negation_between_same_number(vector<vector<a_data>> prob);
+	vector<vector<a_data>> negation_exit(vector<vector<a_data>> prob);
 	vector<vector<a_data>> simple_negation(vector<vector<a_data>> prob);
 	vector<vector<a_data>> simple_grow(vector<vector<a_data>> prob);
 };

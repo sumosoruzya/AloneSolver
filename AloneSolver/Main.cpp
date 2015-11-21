@@ -4,6 +4,23 @@
 
 #include "AloneSolver.hpp"
 
+vector<int> dec2bin(vector<vector<int>> dec) {
+	vector<int> bin;
+
+	for (auto vec : dec) {
+		for (auto num : vec) {
+			if (num == 0) {
+				bin.push_back(1);
+			}
+			else {
+				bin.push_back(0);
+			}
+		}
+	}
+
+	return bin;
+}
+
 int main(int argc, char* argv[]) {
 	if (argc < 4) {
 		cout << "ERROR : Number of argument is not enough" << endl;
@@ -46,9 +63,9 @@ int main(int argc, char* argv[]) {
 		vector<vector<int>> problem;
 
 		AloneSolver alone = AloneSolver(problem);
-		vector<vector<int>> solution = alone.solve();
+		auto solution = alone.solve();
 
-		//solution_list.push_back(solution);
+		solution_list.push_back(dec2bin(solution));
 	}
 	
 	// csvå`éÆÇ≈èoóÕ

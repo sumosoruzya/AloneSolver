@@ -5,6 +5,7 @@ vector<vector<int>> AloneSolver::solve() {
 	auto answer = grow_three_line(problem);
 	answer = grow_two_one_line(answer);
 	answer = negation_between_same_number(answer);
+	answer = negation_exit(answer);
 
 	// 単純否定と単純発生のコンボ
 	answer = simple_negation(answer);
@@ -108,6 +109,18 @@ vector<vector<a_data>> AloneSolver::negation_between_same_number(vector<vector<a
 	return prob;
 }
 
+vector<vector<a_data>> AloneSolver::negation_exit(vector<vector<a_data>> prob) {
+	// 黒マスによる分断を禁止する
+	for (int i = 0; i < matrix_size; i++) {
+		for (int j = 0; j < matrix_size; j++) {
+			if (prob[i][j].flag == 1) {
+				
+			}
+		}
+	}
+	return prob;
+}
+
 vector<vector<a_data>> AloneSolver::simple_negation(vector<vector<a_data>> prob) {
 	// 自身が黒マスなら、周囲のマスは白マス
 	for (int i = 0; i < matrix_size; i++) {
@@ -120,6 +133,7 @@ vector<vector<a_data>> AloneSolver::simple_negation(vector<vector<a_data>> prob)
 			}
 		}
 	}
+	return prob;
 }
 
 vector<vector<a_data>> AloneSolver::simple_grow(vector<vector<a_data>> prob) {
@@ -145,4 +159,5 @@ vector<vector<a_data>> AloneSolver::simple_grow(vector<vector<a_data>> prob) {
 			}
 		}
 	}
+	return prob;
 }
